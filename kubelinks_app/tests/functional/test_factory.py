@@ -6,7 +6,7 @@ def test_home_page_with_fixture(client):
     """
     response = client.get('/')
     assert response.status_code == 200
-    assert b"Kubernetes urls" in response.data
+    assert b"Kubernetes links" in response.data
     assert b"Url" in response.data
     assert b"Name" in response.data
     assert b"Type" in response.data

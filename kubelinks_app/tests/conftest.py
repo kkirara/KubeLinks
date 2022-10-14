@@ -1,6 +1,6 @@
 import pytest
 
-from cube_app import create_app
+from kubelinks_app import create_app
 
 
 @pytest.fixture()
