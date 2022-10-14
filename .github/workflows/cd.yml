@@ -38,4 +38,4 @@ jobs:
       run: |         
         python -m pytest
       env:
-        FLASK_APP: cube_app.__init__
+        FLASK_APP: kubelinks_app.__init__
