@@ -1,0 +1,120 @@
+body{
+    background-color: #000000;
+    color: #eff6ff;
+    font-family: 'Inter', 'system-ui', 'sans-serif';
+}
+.message {
+    font-weight: 600;
+    color: blue;
+}
+
+.navbar {
+    background-color: lightslategray;
+    font-size: 1em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    padding: 8px 5px 8px 5px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar-brand {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.navbar-item {
+    font-variant: small-caps;
+    margin-left: 30px;
+}
+
+.body-content {
+    padding: 5px;
+    /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+}
+
+a:link {
+    color: #60a5fa;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: #94a3b8;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: #2563eb;
+  }
+  
+  /* selected link */
+  a:active {
+    color: #2563eb;
+  }
+
+.color-primary-050 { color: #eff6ff; }
+.color-primary-100 { color: #dbeafe; }
+.color-primary-200 { color: #bfdbfe; }
+.color-primary-300 { color: #93c5fd; }
+.color-primary-400 { color: #60a5fa; }
+.color-primary-500 { color: #3b82f6; }
+.color-primary-600 { color: #2563eb; }
+.color-primary-700 { color: #1d4ed8; }
+.color-primary-800 { color: #1e40af; }
+.color-primary-900 { color: #1e3a8a; }
+    
+.color-second-050 { color: #f8fafc; }
+.color-second-100 { color: #f1f5f9; }
+.color-second-200 { color: #e2e8f0; }
+.color-second-300 { color: #cbd5e1; }
+.color-second-400 { color: #94a3b8; }
+.color-second-500 { color: #64748b; }
+.color-second-600 { color: #475569; }
+.color-second-700 { color: #334155; }
+.color-second-800 { color: #1e293b; }
+.color-second-900 { color: #0f172a; }
+
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: lightslategray;
+    color: white;
+    text-align: center;
+}
+
+.table {
+	width: 100%;
+	margin-bottom: 20px;
+    border-spacing: 0;
+    border: #181818 solid;
+    border-radius: 8px 8px;
+}
+.table thead th {
+	font-weight: bold;
+	text-align: left;
+	border: none;
+	padding: 10px 15px;
+	background: #181818;
+	font-size: 14px;
+}
+
+.table tbody td {
+	text-align: left;  
+	border: none;
+	padding: 10px 15px;
+	font-size: 0.90em; 
+	vertical-align: top; 
+}
+/* 
+.table tbody tr:nth-child(even){
+	background: #111111;
+} */
+
+#link{
+    width: fit-content;
+}

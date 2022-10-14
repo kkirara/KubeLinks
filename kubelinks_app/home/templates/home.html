@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+<div class="bg-slate-100">
+    <h2>Kubernetes links</h2>
+    <p>Ingress and istio urls<p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Url</th>
+                <th>Type</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in ingress %}
+                <tr>
+                    {% if item.link %}
+                        <td><a href="{{ item.link }}" target="_blank">{{ item.host_name }}</a></td>
+                    {% else %}
+                        <td>{{ item.host_name }}</td>
+                    {% endif %}
+                    <td>ingress</td>
+                    <td>{{ item.metadata_name }}</td>
+                </tr>
+            {% endfor %}
+
+            {% for item in gateway %}
+                <tr>
+                    {% if item.link %}
+                        <td><a href="{{ item.link }}" target="_blank">{{ item.host_name }}</a></td>
+                    {% else %}
+                        <td>{{ item.host_name }}</td>
+                    {% endif %}
+                    <td>gateway</td>
+                    <td>{{ item.metadata_name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

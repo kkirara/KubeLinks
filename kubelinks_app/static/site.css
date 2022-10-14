@@ -1,0 +1,152 @@
+:root{
+    --color-primary-050 : #eff6ff;
+    --color-primary-100 : #dbeafe;
+    --color-primary-200 : #bfdbfe;
+    --color-primary-300 : #93c5fd;
+    --color-primary-400 : #60a5fa;
+    --color-primary-500 : #3b82f6;
+    --color-primary-600 : #2563eb;
+    --color-primary-700 : #1d4ed8;
+    --color-primary-800 : #1e40af;
+    --color-primary-900 : #1e3a8a;
+        
+    --color-second-050: #f8fafc;
+    --color-second-100: #f1f5f9;
+    --color-second-200: #e2e8f0;
+    --color-second-300: #cbd5e1;
+    --color-second-400: #94a3b8;
+    --color-second-500: #64748b;
+    --color-second-600: #475569;
+    --color-second-700: #334155;
+    --color-second-800: #1e293b;
+    --color-second-900: #0f172a;
+    --font-sans-serif: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    --font-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+}
+body{
+    font-family: var(--font-sans-serif);   
+}
+
+.message {
+    font-weight: 600;
+    color: blue;
+}
+
+.navbar {
+    background-color: lightslategray;
+    font-size: 1em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    padding: 8px 5px 8px 5px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar-brand {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.navbar-item {
+    font-variant: small-caps;
+    margin-left: 30px;
+}
+
+.body-content {
+    padding: 5px;
+    /* font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+}
+
+/* a:link {
+    color: #60a5fa;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: --color-second-400;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: --color-primary-600;
+  }
+  
+  /* selected link */
+  a:active {
+    color: --color-primary-600;
+  } */
+
+
+
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: lightslategray;
+    color: white;
+    text-align: center;
+}
+
+.bg-slate-100 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(241 245 249/var(--tw-bg-opacity));
+    padding: 1em;
+    border-radius: 0.5em;
+}
+
+.table {
+	width: 100%;
+	margin-bottom: 20px;
+    border-spacing: 0;
+    border: 0 solid #e5e7eb;
+    border-radius: 8px 8px;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0/0.1),0 8px 10px -6px rgb(0 0 0/0.1);
+    --tw-divide-opacity: 1;
+    border-color: rgb(241 245 249/var(--tw-divide-opacity));
+    --tw-divide-y-reverse: 0;
+    border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+    border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+    background-color: white;
+}
+.table thead th {
+	font-weight: bold;
+	text-align: left;
+	border-bottom: 0 solid #e5e7eb;
+	padding: 10px 15px;
+    border-radius: 8px 8px 0px 0px;
+	/* background: #e5e7eb; */
+	font-size: 14px;    
+}
+
+.table tbody td {
+	text-align: left;  
+	border: none;
+	padding: 10px 15px;
+	font-size: 0.90em; 
+	vertical-align: top; 
+    box-sizing: border-box;
+    border-top:  0 solid #e5e7eb;
+    border-bottom: 0 solid #e5e7eb;
+    --tw-divide-opacity: 1;
+    border-color: rgb(241 245 249/var(--tw-divide-opacity));
+    --tw-divide-y-reverse: 0;
+    border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
+    border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
+    
+}
+.table tbody tr:hover{
+    background-color: #e5e7eb;
+}
+
+/* 
+.table tbody tr:nth-child(even){
+	background: #111111;
+} */
+
+#link{
+    width: fit-content;
+}
