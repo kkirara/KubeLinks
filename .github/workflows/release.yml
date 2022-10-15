@@ -1,7 +1,9 @@
 name: build docker image and release helm chart
 
 on:
-  create:
+  push:
+    branches:
+      - master
     tags:
       - v*
 
@@ -55,7 +57,7 @@ jobs:
           values: charts/kubelinks/values.yaml
           keys: .image.tag
           bump_level: patch
-          commit_branch: main
+          commit_branch: master
 
       - name: Install Helm
         uses: azure/setup-helm@v3
