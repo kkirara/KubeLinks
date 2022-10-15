@@ -1,0 +1,25 @@
+{{- if .Values.serviceAccount.create -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "KubeLinks.serviceAccountName" . }}
+  labels:
+    {{- include "KubeLinks.labels" . | nindent 4 }}
+rules:
+- apiGroups: ["networking.k8s.io", "networking.istio.io"]
+  resources: ["ingresses", "gateways"]
+  verbs: ["get", "watch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "KubeLinks.serviceAccountName" . }}
+subjects:
+- kind: ServiceAccount
+  name: {{ include "KubeLinks.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: ClusterRole
+  name: {{ include "KubeLinks.serviceAccountName" . }}
+  apiGroup: rbac.authorization.k8s.io
+{{- end }}
