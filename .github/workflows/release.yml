@@ -51,11 +51,8 @@ jobs:
       - name: Update Helm Chart Values
         uses: Nextdoor/helm-set-image-tag-action@main
         with:
-          verbose: true
           tag_value: ${{github.ref_name}}
           values_files: charts/kubelinks/values.yaml
-          tag_keys: .image.tag
-          bump_level: patch
           commit_branch: master
 
       - name: Install Helm
