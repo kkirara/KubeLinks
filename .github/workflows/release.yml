@@ -54,6 +54,7 @@ jobs:
           verbose: true
           tag: ${{github.ref_name}}
           values: charts/kubelinks/values.yaml
+          values_file: charts/kubelinks/values.yaml
           keys: .image.tag
           bump_level: patch
           commit_branch: master
