@@ -52,10 +52,9 @@ jobs:
         uses: Nextdoor/helm-set-image-tag-action@main
         with:
           verbose: true
-          tag: ${{github.ref_name}}
-          values: charts/kubelinks/values.yaml
+          tag_value: ${{github.ref_name}}
           values_files: charts/kubelinks/values.yaml
-          keys: .image.tag
+          tag_keys: .image.tag
           bump_level: patch
           commit_branch: master
 
