@@ -2,8 +2,6 @@ name: build docker image and release helm chart
 
 on:
   push:
-    branches:
-      - master
     tags:
       - v*
 
@@ -32,7 +30,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: smitkirara/kubelinks:${{ github.ref }}
+          tags: smitkirara/kubelinks:${{github.ref_name}}
 
   release:
     needs: docker
@@ -54,7 +52,7 @@ jobs:
         uses: Nextdoor/helm-set-image-tag-action@main
         with:
           verbose: true
-          tag: ${{ github.ref }}
+          tag: ${{github.ref_name}}
           values: charts/kubelinks/values.yaml
           keys: .image.tag
           bump_level: patch
