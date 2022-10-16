@@ -42,7 +42,7 @@ jobs:
           fetch-depth: 0
 
       - name: Update Helm Chart Values
-        uses: Nextdoor/helm-set-image-tag-action@main
+        uses: brainfair/helm-set-image-tag-action@main
         with:
           tag_value: ${{ github.ref }}
           values_files: charts/kubelinks/values.yaml
@@ -54,4 +54,4 @@ jobs:
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.4.1
         env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"          
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
