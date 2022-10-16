@@ -3,4 +3,4 @@ appVersion: 0.1.3
 description: A Helm chart for Kubernetes
 name: kubelinks
 type: application
-version: 0.1.12
+version: 0.1.13
