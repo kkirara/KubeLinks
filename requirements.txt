@@ -14,7 +14,7 @@ importlib-metadata==6.0.0
 iniconfig==2.0.0
 itsdangerous==2.1.2
 Jinja2==3.1.2
-kubernetes==24.2.0
+kubernetes==25.3.0
 MarkupSafe==2.1.2
 mccabe==0.7.0
 oauthlib==3.2.2
