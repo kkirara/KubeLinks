@@ -3,6 +3,16 @@ entries:
   kubelinks:
   - apiVersion: v2
     appVersion: 0.1.3
+    created: "2023-02-04T17:04:26.198270444Z"
+    description: A Helm chart for Kubernetes
+    digest: 9481a9ae71b51405aca2e8ea102d433e8a8e4e097faa08f0310f81279ff476fc
+    name: kubelinks
+    type: application
+    urls:
+    - https://github.com/kkirara/KubeLinks/releases/download/kubelinks-0.1.18/kubelinks-0.1.18.tgz
+    version: 0.1.18
+  - apiVersion: v2
+    appVersion: 0.1.3
     created: "2023-01-24T19:47:12.060470761Z"
     description: A Helm chart for Kubernetes
     digest: 351f6c3ee91bd9e42e4eaded892fe138402a3199837f36c03934da8ab45fddfa
@@ -61,4 +71,4 @@ entries:
     urls:
     - https://github.com/kkirara/KubeLinks/releases/download/kubelinks-0.1.12/kubelinks-0.1.12.tgz
     version: 0.1.12
-generated: "2023-01-24T19:47:12.060491261Z"
+generated: "2023-02-04T17:04:26.198293245Z"
