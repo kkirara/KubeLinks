@@ -1,44 +1,46 @@
 {% extends "layout.html" %}
 {% block title %}
-Home
+KubeLinks
 {% endblock %}
 {% block content %}
-<div class="bg-slate-100">
+<div class="container">
     <h2>Kubernetes links</h2>
-    <p>Ingress and istio urls<p>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Url</th>
-                <th>Type</th>
-                <th>Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in ingress %}
+    <p>Ingress and Istio urls</p>
+    <div id="table" class="container w-100 p-3 mb-5 shadow rounded-2">
+        <table class="table table-striped table-hover  bg-body ">
+            <thead>
+                <tr>
+                    <th scope="col">Url</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Name</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for item in ingress %}
                 <tr>
                     {% if item.link %}
-                        <td><a href="{{ item.link }}" target="_blank">{{ item.host_name }}</a></td>
+                    <td><a href="{{ item.link }}" target="_blank">{{ item.host_name }}</a></td>
                     {% else %}
-                        <td>{{ item.host_name }}</td>
+                    <td>{{ item.host_name }}</td>
                     {% endif %}
                     <td>ingress</td>
                     <td>{{ item.metadata_name }}</td>
                 </tr>
-            {% endfor %}
+                {% endfor %}
 
-            {% for item in gateway %}
+                {% for item in gateway %}
                 <tr>
                     {% if item.link %}
-                        <td><a href="{{ item.link }}" target="_blank">{{ item.host_name }}</a></td>
+                    <td><a href="{{ item.link }}" target="_blank">{{ item.host_name }}</a></td>
                     {% else %}
-                        <td>{{ item.host_name }}</td>
+                    <td>{{ item.host_name }}</td>
                     {% endif %}
                     <td>gateway</td>
                     <td>{{ item.metadata_name }}</td>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
