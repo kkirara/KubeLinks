@@ -7,3 +7,5 @@ KubeLinks provides a convenient web page with links to all urls presented in ing
 
 * Install
   * [KubeLinks install on Kubernetes](https://kkirara.github.io/KubeLinks/)
+
+![Screen](KubeLinksScreen.png)
