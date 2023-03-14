@@ -43,13 +43,9 @@ KubeLinks
 
                 {% for item in extraurls %}
                 <tr>
-                    {% if item.link %}
-                    <td><a href="{{ item.link }}" target="_blank">{{ item.host_name }}</a></td>
-                    {% else %}
-                    <td>{{ item.host_name }}</td>
-                    {% endif %}
-                    <td>gateway</td>
-                    <td>{{ item.metadata_name }}</td>
+                    <td><a href="{{ item.url }}" target="_blank">{{ item.url }}</a></td>
+                    <td>ExtraURL</td>
+                    <td>{{ item.name }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

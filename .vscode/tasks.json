@@ -21,7 +21,8 @@
 			"dockerRun": {
 				"env": {
 					"FLASK_APP": "kubelinks_app.__init__.py",
-					"KUBECONFIG": "/app/.kube/config"
+					"KUBECONFIG": "/app/.kube/config",
+					"LOGLEVEL": "DEBUG"
 				},
 				"ports":[
 					{
