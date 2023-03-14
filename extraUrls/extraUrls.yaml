@@ -1,0 +1,4 @@
+- name: mycustomurl1
+  url: https://test.io
+- name: mycustomurl2
+  url: https://google.com
