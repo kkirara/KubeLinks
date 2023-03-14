@@ -11,7 +11,7 @@ class Extra_URL():
 
 def get_eu_list():
 
-    with open("/app/extraUrls/extraUrls.yaml", "r") as stream:
+    with open("./extraUrls/extraUrls.yaml", "r") as stream:
         list_extraurls = []
         try:
             logger.info('ExtraUrls: START')
