@@ -17,6 +17,14 @@ KubeLinks
                 </tr>
             </thead>
             <tbody class="table-group-divider">
+                {% for item in extraurls %}
+                <tr>
+                    <td><a href="{{ item.url }}" target="_blank">{{ item.url_name }}</a></td>
+                    <td>ExtraURL</td>
+                    <td>{{ item.name }}</td>
+                </tr>
+                {% endfor %}
+
                 {% for item in ingress %}
                 <tr>
                     {% if item.link %}
@@ -38,14 +46,6 @@ KubeLinks
                     {% endif %}
                     <td>gateway</td>
                     <td>{{ item.metadata_name }}</td>
-                </tr>
-                {% endfor %}
-
-                {% for item in extraurls %}
-                <tr>
-                    <td><a href="{{ item.url }}" target="_blank">{{ item.url }}</a></td>
-                    <td>ExtraURL</td>
-                    <td>{{ item.name }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
