@@ -1,0 +1,5 @@
+- name: mycustomurl1
+  url: https://test.io
+  url_name: test.io
+- name: mycustomurl2
+  url: https://google.com

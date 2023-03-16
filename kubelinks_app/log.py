@@ -1,7 +1,10 @@
-import logging
+import logging, os
 from kubernetes import config
 
+LOGLEVEL = os.environ.get('LOGLEVEL', 'INFO').upper()
 logger = logging.getLogger(__name__)
+logger.setLevel(LOGLEVEL)
+
 error = None
 
 try:

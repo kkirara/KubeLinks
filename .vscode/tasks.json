@@ -20,8 +20,16 @@
 			],
 			"dockerRun": {
 				"env": {
-					"FLASK_APP": "kubelinks_app.__init__.py"
-				}
+					"FLASK_APP": "kubelinks_app.__init__.py",
+					"KUBECONFIG": "/app/.kube/config",
+					"LOGLEVEL": "DEBUG"
+				},
+				"ports":[
+					{
+					"hostPort": 8080,
+					"containerPort": 8080
+					}
+				]
 			},
 			"python": {
 				"args": [

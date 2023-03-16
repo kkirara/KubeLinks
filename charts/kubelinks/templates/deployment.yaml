@@ -13,10 +13,11 @@ spec:
       {{- include "KubeLinks.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
       annotations:
+      {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
       labels:
         {{- include "KubeLinks.selectorLabels" . | nindent 8 }}
     spec:
@@ -47,6 +48,13 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: extra-urls
+              mountPath: /app/extraUrls
+      volumes:
+        - name: extra-urls
+          configMap:
+            name: {{ include "KubeLinks.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

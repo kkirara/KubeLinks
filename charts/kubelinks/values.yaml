@@ -70,3 +70,15 @@ autoscaling:
 nodeSelector: {}
 tolerations: []
 affinity: {}
+
+
+# Extra Urls shown on the page
+# URL name can be optional if you want to make a visible and real part of the link different
+extraUrls: []
+#- name: mycustomurl1
+#  url: https://test.io
+#  url_name: test.io
+#- name: mycustomurl2
+#  url: https://google.com
+#- name: mycustomurl3
+#  url: nothinghere.io
