@@ -7,7 +7,7 @@ image:
   repository: smitkirara/kubelinks
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.1.28"
+  tag: "v0.2.0"
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -70,8 +70,6 @@ autoscaling:
 nodeSelector: {}
 tolerations: []
 affinity: {}
-
-
 # Extra Urls shown on the page
 # URL name can be optional if you want to make a visible and real part of the link different
 extraUrls: []
