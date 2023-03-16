@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "KubeLinks.fullname" . }}
+  labels:
+    {{- include "KubeLinks.labels" . | nindent 4 }}
+data:
+  extraUrls.yaml: |-
+{{- if .Values.extraUrls }}
+    {{- toYaml $.Values.extraUrls | nindent 4 }}
+{{- end }}
