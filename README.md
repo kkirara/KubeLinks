@@ -8,7 +8,7 @@ KubeLinks provides a convenient web page with links to all urls presented in ing
   * Showing all Istio gateway and Ingress objects with clickable URLs for HTTP and HTTPS, also merge same HTTP+HTTPS to 1 record
   * extra URLs to show on the page configurable in values if you want to add something useful
 
+![Screen](KubeLinksScreen.png)
+
 ## Install
   * [KubeLinks install on Kubernetes](https://kkirara.github.io/KubeLinks/)
-
-![Screen](KubeLinksScreen.png)
