@@ -25,7 +25,7 @@ def dict2obj(d):
 
 
 def get_port(port, preffix=':'):
-    if port.protocol == "HTTP" and port.number == 80:
+    if port.protocol in ("HTTP", "HTTP2") and port.number == 80:
         return ''
     elif port.protocol == "HTTPS" and port.number == 443:
         return ''
@@ -71,7 +71,7 @@ def get_gw_list(remove_duplicate: bool = True):
         for item in gateways.items:
             for server in item.spec.servers:
                 port = server.port
-                if port.protocol in ('HTTP', 'HTTPS'):
+                if port.protocol in ('HTTP', 'HTTP2', 'HTTPS'):
                     for host in server.hosts:
                         link = get_link(host, port)
                         host_name = get_name(host, port)

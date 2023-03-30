@@ -10,9 +10,8 @@ class Extra_URL():
     url_name: str = None
 
 def get_eu_list():
-
+    list_extraurls = []
     with open("./extraUrls/extraUrls.yaml", "r") as stream:
-        list_extraurls = []
         try:
             logger.info('ExtraUrls: START')
             data = yaml.load(stream, Loader=yaml.FullLoader)
@@ -28,4 +27,4 @@ def get_eu_list():
                     url_name=url_name))
         except Exception as e:
             logger.error(f'ExtraUrls: {e}')
-        return list_extraurls
+    return list_extraurls
