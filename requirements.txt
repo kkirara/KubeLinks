@@ -9,7 +9,7 @@ flake8==6.0.0
 Flask==2.2.3
 google-auth==2.17.3
 idna==3.4
-importlib-metadata==6.3.0
+importlib-metadata==6.4.1
 iniconfig==2.0.0
 itsdangerous==2.1.2
 Jinja2==3.1.2
