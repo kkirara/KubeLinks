@@ -1,4 +1,4 @@
-name: Python application
+name: test and build image
 
 on:
   pull_request:
@@ -7,10 +7,8 @@ on:
 permissions:
   contents: read
 
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -30,7 +28,7 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
-      run: |         
+      run: |
         python -m pytest
       env:
         FLASK_APP: kubelinks_app.__init__

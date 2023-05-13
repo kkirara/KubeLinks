@@ -7,7 +7,7 @@ on:
 
 jobs:
   docker:
-    runs-on: ubuntu-latest    
+    runs-on: ubuntu-latest
     steps:
       -
         name: Checkout
@@ -40,24 +40,20 @@ jobs:
         uses: actions/checkout@master
         with:
           fetch-depth: 0
-
       - name: Update Helm Chart Values
         uses: brainfair/helm-set-image-tag-action@main
         with:
           tag_value: ${{ github.ref }}
           values_files: charts/kubelinks/values.yaml
           commit_branch: master
-
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          
       - name: Install Helm
         uses: azure/setup-helm@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.4.1
         env:

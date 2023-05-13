@@ -1,3 +1,4 @@
+{{- if .Values.extraUrls }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -6,6 +7,5 @@ metadata:
     {{- include "KubeLinks.labels" . | nindent 4 }}
 data:
   extraUrls.yaml: |-
-{{- if .Values.extraUrls }}
     {{- toYaml $.Values.extraUrls | nindent 4 }}
 {{- end }}

@@ -70,6 +70,7 @@ autoscaling:
 nodeSelector: {}
 tolerations: []
 affinity: {}
+skipWildcardUrls: true
 # Extra Urls shown on the page
 # URL name can be optional if you want to make a visible and real part of the link different
 extraUrls: []

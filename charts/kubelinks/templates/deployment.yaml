@@ -34,6 +34,9 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: SKIP_WILDCARD_URLS
+              value: {{ .Values.skipWildcardUrls | default false | toString }}
           ports:
             - name: http
               containerPort: 8080
