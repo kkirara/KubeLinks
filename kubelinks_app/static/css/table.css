@@ -1,0 +1,25 @@
+div.sortable {
+    cursor: pointer;
+}
+
+div.sorted-asc::before {
+    font-family: bootstrap-icons !important;
+    content: "\f128"; 
+}
+
+div.sorted-desc::before {
+    font-family: bootstrap-icons !important;    
+    content: "\f148"; 
+}
+
+div.sorted-none::before {
+    font-family: bootstrap-icons !important;
+    content: "\f127";
+}
+
+.w-45{
+    width: 42%;
+}
+.w-10{
+    width: 16%;
+}

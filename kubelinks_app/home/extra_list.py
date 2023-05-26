@@ -3,11 +3,14 @@ from dataclasses import dataclass
 
 from ..log import logger
 
+
 @dataclass
 class Extra_URL():
     name: str = None
     url: str = None
     url_name: str = None
+    url_type: str = 'ExtraURL'
+
 
 def get_eu_list():
     list_extraurls = []
@@ -17,14 +20,10 @@ def get_eu_list():
             data = yaml.load(stream, Loader=yaml.FullLoader)
 
             for item in data:
-                if 'url_name' not in item or not item['url_name']:
-                    url_name=item['url']
-                else:
-                    url_name=item['url_name']
                 list_extraurls.append(Extra_URL(
                     name=item['name'],
                     url=item['url'],
-                    url_name=url_name))
+                    url_name=item.get('url_name') or item.get('url')))
         except Exception as e:
             logger.error(f'ExtraUrls: {e}')
     return list_extraurls
