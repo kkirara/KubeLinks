@@ -1,54 +1,61 @@
 {% extends "layout.html" %}
+
 {% block title %}
 KubeLinks
 {% endblock %}
+
+{% block head_content %}
+<link href="{{ url_for('static', filename='css/table.min.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/bootstrap-icons.min.css') }}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-
-    <!-- <h2>Kubernetes links</h2> -->
-    <h2>Ingress and Istio urls</h2>
-    <p></p>
-    <div id="table" class="container p-1 w-100 mb-5 shadow rounded-2">
-        <table class="table table-striped table-hover bg-body ">
-            <thead>
-                <tr>
-                    <th scope="col">Url</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Name</th>
-                </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                {% for item in extraurls %}
-                <tr>
-                    <td><a href="{{ item.url }}" target="_blank">{{ item.url_name }}</a></td>
-                    <td>ExtraURL</td>
-                    <td>{{ item.name }}</td>
-                </tr>
-                {% endfor %}
-
-                {% for item in ingress %}
-                <tr>
-                    {% if item.link %}
-                    <td><a href="{{ item.link }}" target="_blank">{{ item.host_name }}</a></td>
-                    {% else %}
-                    <td>{{ item.host_name }}</td>
-                    {% endif %}
-                    <td>ingress</td>
-                    <td>{{ item.metadata_name }}</td>
-                </tr>
-                {% endfor %}
-
-                {% for item in gateway %}
-                <tr>
-                    {% if item.link %}
-                    <td><a href="{{ item.link }}" target="_blank">{{ item.host_name }}</a></td>
-                    {% else %}
-                    <td>{{ item.host_name }}</td>
-                    {% endif %}
-                    <td>gateway</td>
-                    <td>{{ item.metadata_name }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+<h2>Ingress and Istio urls</h2>
+<p></p>
+<div id="div-table" class="container p-1 w-100 mb-5 shadow rounded-2">
+  <table id="table" class="table table-striped table-hover bg-body">
+    <thead class="align-top">
+      <tr id="columns">
+        <th data-field="url" data-filter-control="input" class="w-45 border border-0">
+          <div class="row">
+            <div class="col">Url</div>
+            <div class="col-auto pe-0 show-filter"><i class="bi-funnel"></i></div>
+            <div class="sortable col-auto"></div>
+          </div>
+        </th>
+        <th data-field="type" data-filter-control="select" class="w-10 border border-0">
+          <div class="row">
+            <div class="col">Type</div>
+            <div class="col-auto pe-0 show-filter"><i class="bi-funnel"></i></div>
+            <div class="sortable col-auto"></div>
+          </div>
+        </th>
+        <th data-field="name" data-filter-control="select" class="w-45 border border-0">
+          <div class="row">
+            <div class="col">Name</div>
+            <div class="col-auto pe-0 show-filter"><i class="bi-funnel"></i></div>
+            <div class="sortable col-auto"></div>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      {% for row in data['urls'] %}
+      <tr>
+        <td data-field="url" class="text-break">{% if row.url %}
+          <a href="{{ row.url }}" target="_blank">{{ row.url_name }}</a>
+          {% else %}
+          {{ row.url_name }}
+          {% endif %}
+        </td>
+        <td data-field="type" class="text-break">{{ row.url_type }}</td>
+        <td data-field="name" class="text-break">{{ row.name }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/table.min.js') }}"></script>
 {% endblock %}

@@ -1,62 +1,53 @@
 import json
+from types import SimpleNamespace
 from dataclasses import dataclass
 
 from ..log import logger
 from kubernetes import client
 
+HTTPS = ['HTTPS']
+HTTP = ["HTTP", "HTTP2"]
+
 
 @dataclass
 class Http_Gateway():
-    metadata_name: str = None
-    host: str = None
-    port: str = None
+    name: str = None
+    url: str = None
+    url_name: str = None
+    url_type: str = 'gateway'
     is_https: bool = False
-    link: str = None
-    host_name: str = None
+    host: str = None
 
 
-class obj(object):
-    def __init__(self, dict_):
-        self.__dict__.update(dict_)
-
-
-def dict2obj(d):
-    return json.loads(json.dumps(d), object_hook=obj)
+def dict2obj(data):
+    return json.loads(json.dumps(data),
+                      object_hook=lambda d: SimpleNamespace(**d))
 
 
 def get_port(port, preffix=':'):
-    if port.protocol in ("HTTP", "HTTP2") and port.number == 80:
+    if port.protocol in HTTP and port.number == 80:
         return ''
-    elif port.protocol == "HTTPS" and port.number == 443:
+    elif port.protocol in HTTPS and port.number == 443:
         return ''
     else:
         return f'{preffix}{port.number}'
 
 
-def get_link(host, port):
-    if '*' in host:
-        return None
-    else:
-        return get_name(host, port)
+def get_url(host, port):
+    return None if '*' in host else get_url_name(host, port)
 
 
-def get_name(host, port):
-    protocol = port.protocol.lower()
+def get_url_name(host, port):
+    protocol = 'https://' if port.protocol in HTTPS else 'http://'
     host_name = host[host.find("*"):] if '*' in host else host
-    return f'{protocol}://{host_name}{get_port(port)}'
+    return f'{protocol}{host_name}{get_port(port)}'
 
 
-def removed(list_gw):
-    https_host = set()
-    http_host = set()
-    for x in list_gw:
-        if not x.is_https:
-            http_host.add(x.host)
-        else:
-            https_host.add(x.host)
-    http_host &= https_host
-    return filter(lambda x: x.is_https
-                  or not x.is_https and x.host not in http_host, list_gw)
+def removed(list_gw: list[Http_Gateway]):
+    https_host = set(x.host for x in list_gw if x.is_https)
+    return list(filter(lambda x: x.is_https
+                       or not x.is_https
+                       and x.host not in https_host, list_gw))
 
 
 def get_gw_list(remove_duplicate: bool = True):
@@ -71,15 +62,14 @@ def get_gw_list(remove_duplicate: bool = True):
         for item in gateways.items:
             for server in item.spec.servers:
                 port = server.port
-                if port.protocol in ('HTTP', 'HTTP2', 'HTTPS'):
+                if port.protocol in HTTP or port.protocol in HTTPS:
                     for host in server.hosts:
-                        link = get_link(host, port)
-                        host_name = get_name(host, port)
                         list_gw.append(Http_Gateway(
-                            item.metadata.name,
-                            host, port.number,
-                            port.protocol == 'HTTPS',
-                            link, host_name))
+                            name=item.metadata.name,
+                            url=get_url(host, port),
+                            url_name=get_url_name(host, port),
+                            is_https=port.protocol in HTTPS,
+                            host=host))
     except Exception as e:
         logger.error(f'GATEWAY: {e}')
     logger.info('GATEWAY: FINISH')

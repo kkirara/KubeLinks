@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 from ..log import logger
 from kubernetes import client
@@ -6,21 +6,22 @@ from kubernetes import client
 
 @dataclass
 class Http_Ingress():
-    metadata_name: str = None
-    host: str = None
-    path: str = None
-    https: bool = False
-    link: str = field(init=False)
-    host_name: str = field(init=False)
+    name: str = None
+    url: str = None
+    url_name: str = None
+    url_type: str = 'ingress'
 
-    def __post_init__(self):
-        http = 'https://' if self.https else 'http://'
-        host = self.host if self.host else '*'
-        self.host_name = f"{http}{host}{self.path}"
-        if not (self.host) or self.host.startswith('*'):
-            self.link = None
-        else:
-            self.link = self.host_name
+
+def get_url_name(is_https: bool, host, path):
+    http = 'https://' if is_https else 'http://'
+    return f"{http}{host or '*'}{path}"
+
+
+def get_url(is_https: bool, host, path):
+    if not (host) or host.startswith('*'):
+        return None
+    else:
+        return get_url_name(is_https, host, path)
 
 
 def get_ingress_list():
@@ -31,18 +32,18 @@ def get_ingress_list():
         ret = v1.list_ingress_for_all_namespaces()
         logger.info(f'INGRESS: ingress items - {len(ret.items)}')
         for item in ret.items:
-            if item.spec.tls is not None:
-                tls_hosts = [
-                    host for tls in item.spec.tls for host in tls.hosts]
+            if item.spec.tls:
+                tls_hosts = [host for tls in item.spec.tls
+                             for host in tls.hosts]
             else:
                 tls_hosts = []
             for rule in item.spec.rules:
                 for p in rule.http.paths:
+                    is_https = rule.host in tls_hosts
                     list_ingress.append(Http_Ingress(
-                        metadata_name=item.metadata.name,
-                        host=rule.host,
-                        path=p.path,
-                        https=rule.host in tls_hosts))
+                        name=item.metadata.name,
+                        url=get_url(is_https, rule.host, p.path),
+                        url_name=get_url_name(is_https, rule.host, p.path)))
     except Exception as e:
         logger.error(f'INGRESS: {e}')
     logger.info(f'INGRESS: FINISH - {len(list_ingress)}')

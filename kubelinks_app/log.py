@@ -1,4 +1,5 @@
-import logging, os
+import logging
+import os
 from kubernetes import config
 
 LOGLEVEL = os.environ.get('LOGLEVEL', 'INFO').upper()
