@@ -7,7 +7,7 @@ image:
   repository: smitkirara/kubelinks
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.2.3"
+  tag: "v0.2.4"
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
