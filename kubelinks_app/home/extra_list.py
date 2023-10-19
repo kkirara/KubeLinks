@@ -1,7 +1,7 @@
 import yaml
 from dataclasses import dataclass
 
-from ..log import logger
+from kubelinks_app import app
 
 
 @dataclass
@@ -16,14 +16,16 @@ def get_eu_list():
     list_extraurls = []
     with open("./extraUrls/extraUrls.yaml", "r") as stream:
         try:
-            logger.info('ExtraUrls: START')
+            app.logger.debug('ExtraUrls: START')
             data = yaml.load(stream, Loader=yaml.FullLoader)
-
+            if not data:
+                return []
             for item in data:
                 list_extraurls.append(Extra_URL(
                     name=item['name'],
                     url=item['url'],
                     url_name=item.get('url_name') or item.get('url')))
         except Exception as e:
-            logger.error(f'ExtraUrls: {e}')
+            app.logger.error(f'ExtraUrls: {e}')
+    app.logger.debug('ExtraUrls: FINISH')
     return list_extraurls

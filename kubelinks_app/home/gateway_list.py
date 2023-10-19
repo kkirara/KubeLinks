@@ -2,7 +2,7 @@ import json
 from types import SimpleNamespace
 from dataclasses import dataclass
 
-from ..log import logger
+from kubelinks_app import app
 from kubernetes import client
 
 HTTPS = ['HTTPS']
@@ -51,7 +51,7 @@ def removed(list_gw: list[Http_Gateway]):
 
 
 def get_gw_list(remove_duplicate: bool = True):
-    logger.info('GATEWAY: START')
+    app.logger.debug('GATEWAY: START')
     list_gw = []
     try:
         gateways = dict2obj(client.CustomObjectsApi()
@@ -71,6 +71,6 @@ def get_gw_list(remove_duplicate: bool = True):
                             is_https=port.protocol in HTTPS,
                             host=host))
     except Exception as e:
-        logger.error(f'GATEWAY: {e}')
-    logger.info('GATEWAY: FINISH')
+        app.logger.error(f'GATEWAY: {e}')
+    app.logger.debug('GATEWAY: FINISH')
     return removed(list_gw) if remove_duplicate else list_gw

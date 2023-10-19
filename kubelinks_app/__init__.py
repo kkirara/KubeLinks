@@ -1,11 +1,20 @@
 from flask import Flask
+import os
+from kubernetes import config
+from kubelinks_app.home.routes import home_bp
 
+app = Flask(__name__)
+app.register_blueprint(home_bp)
+LOGLEVEL = os.environ.get('LOGLEVEL', 'INFO').upper()
+app.logger.setLevel(LOGLEVEL)
 
-def create_app(config_filename=None):
-    app = Flask(__name__)
-    # app.config.from_pyfile(config_filename)
+error = None
 
-    from .home import routes
-    app.register_blueprint(routes.home_bp)
+try:
+    config.load_config()
+except Exception as e:
+    error = e
+    app.logger.error(f'CONFIG: {e}')
 
-    return app
+if __name__ == 'main':
+    app.run()
