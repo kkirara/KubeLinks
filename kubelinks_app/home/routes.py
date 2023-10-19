@@ -1,8 +1,6 @@
 from flask import Blueprint, render_template, abort
 from jinja2 import TemplateNotFound
 
-from . import gateway_list, ingress_list, extra_list
-
 URLS_TYPE = {'all': 0, 'ingress': 1, 'gateway': 2, 'extra': 3}
 
 home_bp = Blueprint('home_bp', __name__,
@@ -19,6 +17,7 @@ def home(urls):
 
 
 def get_urls(urls_type: int = 0):
+    from kubelinks_app.home import gateway_list, ingress_list, extra_list
     ingress = ingress_list.get_ingress_list()
     gateway = gateway_list.get_gw_list()
     extraurls = extra_list.get_eu_list()

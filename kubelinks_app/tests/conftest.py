@@ -1,11 +1,11 @@
 import pytest
 
-from kubelinks_app import create_app
+from kubelinks_app import app as kube_app
 
 
 @pytest.fixture()
 def app():
-    app = create_app()
+    app = kube_app
     app.config.update({
         "TESTING": True,
     })

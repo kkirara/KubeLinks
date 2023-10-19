@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from ..log import logger
+from kubelinks_app import app
 from kubernetes import client
 
 
@@ -25,12 +25,12 @@ def get_url(is_https: bool, host, path):
 
 
 def get_ingress_list():
-    logger.info('INGRESS: START')
+    app.logger.debug('INGRESS: START')
     list_ingress = []
     try:
         v1 = client.NetworkingV1Api()
         ret = v1.list_ingress_for_all_namespaces()
-        logger.info(f'INGRESS: ingress items - {len(ret.items)}')
+        app.logger.debug(f'INGRESS: ingress items - {len(ret.items)}')
         for item in ret.items:
             if item.spec.tls:
                 tls_hosts = [host for tls in item.spec.tls
@@ -45,6 +45,6 @@ def get_ingress_list():
                         url=get_url(is_https, rule.host, p.path),
                         url_name=get_url_name(is_https, rule.host, p.path)))
     except Exception as e:
-        logger.error(f'INGRESS: {e}')
-    logger.info(f'INGRESS: FINISH - {len(list_ingress)}')
+        app.logger.error(f'INGRESS: {e}')
+    app.logger.debug(f'INGRESS: FINISH - {len(list_ingress)}')
     return list_ingress
