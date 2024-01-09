@@ -1,5 +1,5 @@
 autopep8==2.0.4
 flake8==6.1.0
-Flask==2.3.3
+Flask==3.0.0
 kubernetes==28.1.0
 gunicorn==21.2.0
