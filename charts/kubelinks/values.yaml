@@ -81,7 +81,7 @@ extraUrls: []
 #- name: mycustomurl3
 #  url: nothinghere.io
 # URL filters allow you filter list of URLs
-# Wafning for match!!! Searches for a substring in url, not a regular expression
+# Warning for match!!! Searches for a substring in url, not a regular expression
 urlFilters: []
 # - match:string
 #   replace: blabla (optional)

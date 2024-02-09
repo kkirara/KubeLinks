@@ -54,16 +54,11 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-            - name: extra-urls
-              mountPath: /app/extraUrls
-            - name: url-filters
-              mountPath: /app/urlFilters
+            - name: extra-configs
+              mountPath: /app/extraConfigs
       volumes:
-        - name: extra-urls
+        - name: extra-configs
           configMap:
-            name: {{ include "KubeLinks.fullname" . }}
-        - name: url-filters
-          configMap: 
             name: {{ include "KubeLinks.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

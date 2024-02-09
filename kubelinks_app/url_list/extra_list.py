@@ -14,7 +14,7 @@ class Extra_URL():
 
 def get_extraurls_list():
     list_extraurls = []
-    with open("./extraUrls/extraUrls.yaml", "r") as stream:
+    with open("./extraConfigs/extraUrls.yaml", "r") as stream:
         try:
             logger.debug('ExtraUrls: START')
             data = yaml.load(stream, Loader=yaml.FullLoader)
@@ -33,7 +33,7 @@ def get_extraurls_list():
 
 def get_url_filters():
     list_url_filters = []
-    with open("./urlFilters/urlFilters.yaml", "r") as data:
+    with open("./extraConfigs/urlFilters.yaml", "r") as data:
         try:
             logger.debug('get_url_filters: START')
             list_url_filters = yaml.load(data, Loader=yaml.FullLoader)
