@@ -2,7 +2,7 @@ import json
 from types import SimpleNamespace
 from dataclasses import dataclass
 
-from kubelinks_app import app
+from kubelinks_app.logger import logger
 from kubernetes import client
 
 HTTPS = ['HTTPS']
@@ -17,6 +17,7 @@ class Http_Gateway():
     url_type: str = 'gateway'
     is_https: bool = False
     host: str = None
+    namespace: str = None
 
 
 def dict2obj(data):
@@ -50,8 +51,8 @@ def removed(list_gw: list[Http_Gateway]):
                        and x.host not in https_host, list_gw))
 
 
-def get_gw_list(remove_duplicate: bool = True):
-    app.logger.debug('GATEWAY: START')
+def get_gateway_list(remove_duplicate: bool = True):
+    logger.debug('GATEWAY: START')
     list_gw = []
     try:
         gateways = dict2obj(client.CustomObjectsApi()
@@ -59,6 +60,7 @@ def get_gw_list(remove_duplicate: bool = True):
                                 group="networking.istio.io",
                                 version="v1beta1",
                                 plural="gateways"))
+
         for item in gateways.items:
             for server in item.spec.servers:
                 port = server.port
@@ -69,8 +71,9 @@ def get_gw_list(remove_duplicate: bool = True):
                             url=get_url(host, port),
                             url_name=get_url_name(host, port),
                             is_https=port.protocol in HTTPS,
-                            host=host))
+                            host=host,
+                            namespace=item.metadata.namespace))
     except Exception as e:
-        app.logger.error(f'GATEWAY: {e}')
-    app.logger.debug('GATEWAY: FINISH')
+        logger.error(f'GATEWAY: {e}')
+    logger.debug('GATEWAY: FINISH')
     return removed(list_gw) if remove_duplicate else list_gw

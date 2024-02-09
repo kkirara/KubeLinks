@@ -1,0 +1,6 @@
+- match: (/|$)(.*)
+  replace: ""
+- match: .io
+  hide: true
+- match: https://google.com
+  pretty_name: Awesome search

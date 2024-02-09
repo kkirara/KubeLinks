@@ -38,6 +38,11 @@ spec:
             - name: http
               containerPort: 8080
               protocol: TCP
+          env:          
+            {{- range $i, $val := .Values.env }}
+            - name: {{ $val.name }}
+              value: {{ $val.value | quote }}
+            {{- end }}
           livenessProbe:
             httpGet:
               path: /healthz/live
@@ -51,9 +56,14 @@ spec:
           volumeMounts:
             - name: extra-urls
               mountPath: /app/extraUrls
+            - name: url-filters
+              mountPath: /app/urlFilters
       volumes:
         - name: extra-urls
           configMap:
+            name: {{ include "KubeLinks.fullname" . }}
+        - name: url-filters
+          configMap: 
             name: {{ include "KubeLinks.fullname" . }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
