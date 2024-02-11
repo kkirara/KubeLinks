@@ -10,6 +10,6 @@ data:
     {{- toYaml $.Values.extraUrls | nindent 4 }}
 {{- end }}
   urlFilters.yaml: |-
-{{- if .Values.url_filters }}
+{{- if .Values.urlFilters }}
     {{- toYaml $.Values.urlFilters | nindent 4 }}
 {{- end }}

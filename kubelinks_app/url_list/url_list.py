@@ -59,12 +59,15 @@ def apply_filter(matched_filter, item):
         return None
 
     new_item = copy.copy(item)
-    if 'replace' in matched_filter.keys():
+    same_names = new_item.url == new_item.url_name
+    if 'replace' in matched_filter.keys():        
         new_item.url = new_item.url.replace(
             matched_filter['match'], matched_filter.get('replace', ''))
 
     if matched_filter.get('pretty_name', ''):
         new_item.url_name = matched_filter.get('pretty_name', '')
+    elif same_names:
+        new_item.url_name = new_item.url
     return new_item
 
 
