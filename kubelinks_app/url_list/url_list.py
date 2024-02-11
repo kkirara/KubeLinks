@@ -60,7 +60,7 @@ def apply_filter(matched_filter, item):
 
     new_item = copy.copy(item)
     same_names = new_item.url == new_item.url_name
-    if 'replace' in matched_filter.keys():        
+    if 'replace' in matched_filter.keys():
         new_item.url = new_item.url.replace(
             matched_filter['match'], matched_filter.get('replace', ''))
 
