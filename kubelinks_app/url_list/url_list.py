@@ -2,6 +2,7 @@ from kubelinks_app.logger import logger
 from kubelinks_app.config import Config
 from kubelinks_app.url_list import gateway_list, ingress_list
 import copy
+import re
 
 
 def get_urls(urls_type: int = 0, use_filter: bool = False):
@@ -61,8 +62,7 @@ def apply_filter(matched_filter, item):
     new_item = copy.copy(item)
     same_names = new_item.url == new_item.url_name
     if 'replace' in matched_filter.keys():
-        new_item.url = new_item.url.replace(
-            matched_filter['match'], matched_filter.get('replace', ''))
+        new_item.url = re.sub(matched_filter["match"], matched_filter["replace"], new_item.url)
 
     if matched_filter.get('pretty_name', ''):
         new_item.url_name = matched_filter.get('pretty_name', '')
@@ -73,6 +73,8 @@ def apply_filter(matched_filter, item):
 
 def find_filter(item):
     for filter in Config.URL_FILTERS:
-        if filter['match'] in item.url:
+        logger.debug(f'filter["match"]= {filter["match"]} item.url= {item.url}')
+        if re.search(filter["match"], item.url):
+            logger.debug(f'filter= {filter}')
             return filter
     return None
