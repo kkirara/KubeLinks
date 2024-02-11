@@ -10,7 +10,7 @@ KubeLinks
 {% endblock %}
 
 {% block content %}
-<h2>Ingress and Istio urls</h2>
+<h2>{{ title }}</h2>
 <p></p>
 <div id="div-table" class="container p-1 w-100 mb-5 shadow rounded-2">
   <table id="table" class="table table-striped table-hover bg-body">
@@ -30,13 +30,22 @@ KubeLinks
             <div class="sortable col-auto"></div>
           </div>
         </th>
-        <th data-field="name" data-filter-control="select" class="w-45 border border-0">
+        <th data-field="name" data-filter-control="select" class="w-auto border border-0">
           <div class="row">
             <div class="col">Name</div>
             <div class="col-auto pe-0 show-filter"><i class="bi-funnel"></i></div>
             <div class="sortable col-auto"></div>
           </div>
         </th>
+        {% if enabled_namespace %}
+        <th data-field="namespace" data-filter-control="select" class="w-auto border border-0">
+          <div class="row">
+            <div class="col">Namespace</div>
+            <div class="col-auto pe-0 show-filter"><i class="bi-funnel"></i></div>
+            <div class="sortable col-auto"></div>
+          </div>
+        </th>
+        {% endif %}
       </tr>
     </thead>
     <tbody class="table-group-divider">
@@ -50,6 +59,9 @@ KubeLinks
         </td>
         <td data-field="type" class="text-break">{{ row.url_type }}</td>
         <td data-field="name" class="text-break">{{ row.name }}</td>
+        {% if enabled_namespace %}
+          <td data-field="namespace" class="text-break">{{ row.namespace }}</td>
+        {% endif %}
       </tr>
       {% endfor %}
     </tbody>

@@ -1,3 +1,6 @@
+{% set navigation = [( url_for('home_bp.home'), 'Home'), 
+                     ( url_for('home_bp.raw_data'), 'Raw data'),
+                     ] %}
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
 
@@ -30,11 +33,19 @@
           class="d-inline-block align-text-top">
         KubeLinks
       </a>
-      <!-- <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button> -->
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          {% for nav_link, nav_title in navigation %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ nav_link }}" id="{{ nav_link }}" >{{ nav_title }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
       <ul class="nav justify-content-end ">
         <li class="nav-item" style="margin-right: 0.5em!important;">
           <svg class="theme-icon" style="width: 1em; height: 1em; vertical-align: -0.125em; fill: currentcolor;">
@@ -57,7 +68,9 @@
   <div class="container mt-1">
     {% block content %}{% endblock %}
   </div>
-  <script src="{{ url_for('static', filename='js//color-modes.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/color-modes.min.js') }}"></script>
+
   {% block scripts %}{% endblock %}
 </body>
 

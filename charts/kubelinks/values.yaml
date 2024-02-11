@@ -80,3 +80,24 @@ extraUrls: []
 #  url: https://google.com
 #- name: mycustomurl3
 #  url: nothinghere.io
+# URL filters allow you filter list of URLs
+# Warning for match!!! Searches for a substring in url, not a regular expression
+urlFilters: []
+# - match:string
+#   replace: blabla (optional)
+#   hide: true/false (optional)
+#   pretty_name: blablabla (optional)
+#
+# - match: (/|$)(.*)
+#   replace: "" 
+# - match: .io
+#   hide: true
+# - match: https://flux.dash.com
+#   pretty_name: Flux dashboard
+# You can change the header change KUBELINKS_TITLE
+# If you want to see namespace change KUBELINKS_ENABLED_NAMESPACE to 1
+env:
+  - name: KUBELINKS_TITLE
+    value: "Ingress and Istio urls"
+  - name: KUBELINKS_ENABLED_NAMESPACE
+    value: 0
