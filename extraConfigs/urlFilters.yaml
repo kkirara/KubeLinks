@@ -1,6 +1,8 @@
 - match: (/|$)(.*)
   replace: ""
-- match: .io
+- match: foo2
   hide: true
-- match: https://google.com
-  pretty_name: Awesome search
+- match: https://eu.bookinfo.com
+  pretty_name: euro bookinfo
+- match: https://uk.bookinfo.com
+  pretty_name: uk bookinfo  

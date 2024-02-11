@@ -22,7 +22,8 @@
 				"env": {
 					"FLASK_APP": "kubelinks_app.__init__.py",
 					"KUBECONFIG": "/app/.kube/config",
-					"LOGLEVEL": "DEBUG"
+					"LOGLEVEL": "DEBUG",
+                    "KUBELINKS_ENABLED_NAMESPACE": "1",
 				},
 				"ports":[
 					{
