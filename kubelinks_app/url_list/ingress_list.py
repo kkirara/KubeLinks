@@ -1,16 +1,7 @@
-from dataclasses import dataclass
-
-from kubelinks_app.logger import logger
 from kubernetes import client
 
-
-@dataclass
-class Http_Ingress():
-    name: str = None
-    url: str = None
-    url_name: str = None
-    url_type: str = 'ingress'
-    namespace: str = None
+from kubelinks_app.logger import logger
+from kubelinks_app.url_list.url_class import Http_Ingress
 
 
 def get_url_name(is_https: bool, host, path):

@@ -1,23 +1,13 @@
 import json
+from kubernetes import client
 from types import SimpleNamespace
-from dataclasses import dataclass
 
 from kubelinks_app.logger import logger
-from kubernetes import client
+from kubelinks_app.url_list.url_class import Http_Gateway
+
 
 HTTPS = ['HTTPS']
 HTTP = ["HTTP", "HTTP2"]
-
-
-@dataclass
-class Http_Gateway():
-    name: str = None
-    url: str = None
-    url_name: str = None
-    url_type: str = 'gateway'
-    is_https: bool = False
-    host: str = None
-    namespace: str = None
 
 
 def dict2obj(data):

@@ -81,23 +81,33 @@ extraUrls: []
 #- name: mycustomurl3
 #  url: nothinghere.io
 # URL filters allow you filter list of URLs
-# Warning for match!!! Searches for a substring in url, not a regular expression
+# Warning for match!!! Searches for a substring in url, a regular expression
 urlFilters: []
 # - match:string
 #   replace: blabla (optional)
 #   hide: true/false (optional)
 #   pretty_name: blablabla (optional)
 #
-# - match: (/|$)(.*)
-#   replace: "" 
+# - match: foo/bar.+
+#   replace: foo
 # - match: .io
 #   hide: true
 # - match: https://flux.dash.com
 #   pretty_name: Flux dashboard
-# You can change the header change KUBELINKS_TITLE
-# If you want to see namespace change KUBELINKS_ENABLED_NAMESPACE to 1
+# you can add base path for example if you want add path /kubelinks/home
+# change base_path: "/kubelinks"
+base_path: ""
+# ENV 
+# KUBELINKS_TITLE - you can change the header 
+# KUBELINKS_ENABLED_NAMESPACE - if you want to see namespace change to 1
+# KUBELINKS_DEFAULT_SORT - you can create default sort change  
+# use list the field names without spaces separated by commas value: "pretty_name,url_type"
+# name,url,url_name,url_type,namespace,pretty_name 
+# pretty_name - sort url_name without http then sort url_name start with http
 env:
   - name: KUBELINKS_TITLE
     value: "Ingress and Istio urls"
   - name: KUBELINKS_ENABLED_NAMESPACE
     value: 0
+  - name: KUBELINKS_DEFAULT_SORT
+    value: ""

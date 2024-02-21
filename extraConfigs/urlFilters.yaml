@@ -1,5 +1,8 @@
-- match: (/|$)(.*)
-  replace: ""
+- match: http://wild.bar.com/bar/.+
+  replace: http://wild.bar.com/bar/foo
+  pretty_name: Wild reg bar
+- match: http://wild.bar.com/bar.+
+  replace: http://wild.bar.com/bar
 - match: foo2
   hide: true
 - match: https://eu.bookinfo.com

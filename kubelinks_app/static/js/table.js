@@ -30,6 +30,7 @@ function createFilterInput(header) {
   input.classList.add("form-control-sm");
   input.type = "text";
   input.placeholder = "Filter...";
+  input.setAttribute("id", "field");
   input.addEventListener("input", applyFilters);
   filters[field] = input;
   return input;
@@ -47,6 +48,7 @@ function createFilterSelect(header) {
   const select = document.createElement("select");
   select.classList.add("form-select");
   select.classList.add("form-select-sm");
+  select.setAttribute("autocomplete", "off");
   select.id = field;
   var option = document.createElement("option");
   option.value = "";

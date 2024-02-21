@@ -43,13 +43,15 @@ spec:
             - name: {{ $val.name }}
               value: {{ $val.value | quote }}
             {{- end }}
+            - name: KUBELINKS_BASE_PATH
+              value: {{ .Values.base_path | quote }}
           livenessProbe:
             httpGet:
-              path: /healthz/live
+              path: {{ .Values.base_path }}/healthz/live
               port: http
           readinessProbe:
             httpGet:
-              path: /healthz/ready
+              path: {{ .Values.base_path }}/healthz/ready
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}

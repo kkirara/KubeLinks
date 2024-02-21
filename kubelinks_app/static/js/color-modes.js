@@ -12,7 +12,7 @@
       : "light";
   };
 
-  const setTheme = function (theme) {
+  const setTheme = (theme) => {
     if (theme === "auto") {
       document.documentElement.setAttribute(
         "data-bs-theme",
@@ -25,13 +25,15 @@
     }
   };
 
-  const setStyle = function (theme) {
+  const setStyle = (theme) => {
     const is_dark = theme === "dark";
     document.getElementById("div-table").classList.toggle("shadow", !is_dark);
     document.getElementById("div-table").classList.toggle("border", is_dark);
   };
 
   setTheme(getPreferredTheme());
+  document.getElementById("themeMode").checked = getPreferredTheme() === "dark";
+  setStyle(getPreferredTheme());
 
   window
     .matchMedia("(prefers-color-scheme: dark)")
@@ -43,10 +45,6 @@
     });
 
   window.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("themeMode").checked =
-      getPreferredTheme() === "dark";
-    setStyle(getPreferredTheme());
-
     document.getElementById("themeMode").addEventListener("change", () => {
       const theme = document.getElementById("themeMode").checked
         ? "dark"

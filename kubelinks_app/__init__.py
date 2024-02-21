@@ -11,8 +11,8 @@ def create_app(config=config.ProdactionConfig):
     app = Flask(__name__)
     app.config.from_object(config)
 
-    app.register_blueprint(healthz, url_prefix="/healthz")
-    app.register_blueprint(home_bp)
+    app.register_blueprint(home_bp, url_prefix=config.BASE_PATH)
+    app.register_blueprint(healthz, url_prefix=f"{config.BASE_PATH}/healthz")
 
     try:
         kube_config.load_config()
