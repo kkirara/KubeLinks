@@ -161,3 +161,4 @@ cython_debug/
 
 # kubeconfig and cache
 .kube/
+charts/kubelinks/values_test.yaml

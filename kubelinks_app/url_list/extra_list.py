@@ -1,15 +1,7 @@
 import yaml
-from dataclasses import dataclass
 
 from kubelinks_app.logger import logger
-
-
-@dataclass
-class Extra_URL():
-    name: str = None
-    url: str = None
-    url_name: str = None
-    url_type: str = 'ExtraURL'
+from kubelinks_app.url_list.url_class import Extra_URL
 
 
 def get_extraurls_list():
@@ -24,7 +16,8 @@ def get_extraurls_list():
                 list_extraurls.append(Extra_URL(
                     name=item['name'],
                     url=item['url'],
-                    url_name=item.get('url_name') or item.get('url')))
+                    url_name=item.get('url_name') or item.get('url')
+                ))
         except Exception as e:
             logger.error(f'ExtraUrls: {e}')
     logger.debug('ExtraUrls: FINISH')
