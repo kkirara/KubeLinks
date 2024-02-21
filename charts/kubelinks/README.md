@@ -1,6 +1,6 @@
 # kubelinks
 
-![Version: 0.4.2](https://img.shields.io/badge/Version-0.4.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.0](https://img.shields.io/badge/AppVersion-0.4.0-informational?style=flat-square)
+![Version: 0.4.3](https://img.shields.io/badge/Version-0.4.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.4.0](https://img.shields.io/badge/AppVersion-0.4.0-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -13,15 +13,18 @@ A Helm chart for Kubernetes
 | autoscaling.maxReplicas | int | `100` |  |
 | autoscaling.minReplicas | int | `1` |  |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| base_path | string | `""` |  |
 | env[0].name | string | `"KUBELINKS_TITLE"` |  |
 | env[0].value | string | `"Ingress and Istio urls"` |  |
 | env[1].name | string | `"KUBELINKS_ENABLED_NAMESPACE"` |  |
 | env[1].value | int | `0` |  |
+| env[2].name | string | `"KUBELINKS_DEFAULT_SORT"` |  |
+| env[2].value | string | `""` |  |
 | extraUrls | list | `[]` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"smitkirara/kubelinks"` |  |
-| image.tag | string | `"v0.4.2"` |  |
+| image.tag | string | `"v0.4.3"` |  |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.className | string | `""` |  |
