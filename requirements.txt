@@ -1,4 +1,4 @@
-autopep8==2.0.4
+autopep8==2.1.0
 flake8==7.0.0
 Flask==3.0.2
 flask-healthz==1.0.1
