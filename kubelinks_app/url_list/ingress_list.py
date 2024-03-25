@@ -30,13 +30,14 @@ def get_ingress_list():
             else:
                 tls_hosts = []
             for rule in item.spec.rules:
-                for p in rule.http.paths:
-                    is_https = rule.host in tls_hosts
-                    list_ingress.append(Http_Ingress(
-                        name=item.metadata.name,
-                        url=get_url(is_https, rule.host, p.path),
-                        url_name=get_url_name(is_https, rule.host, p.path),
-                        namespace=item.metadata.namespace))
+                if rule.http and rule.http.paths:
+                    for p in rule.http.paths:
+                        is_https = rule.host in tls_hosts
+                        list_ingress.append(Http_Ingress(
+                            name=item.metadata.name,
+                            url=get_url(is_https, rule.host, p.path),
+                            url_name=get_url_name(is_https, rule.host, p.path),
+                            namespace=item.metadata.namespace))
     except Exception as e:
         logger.error(f'INGRESS: {e}')
     logger.debug(f'INGRESS: FINISH - {len(list_ingress)}')
