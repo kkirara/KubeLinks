@@ -1,6 +1,6 @@
 autopep8==2.1.0
 flake8==7.0.0
-Flask==3.0.2
+Flask==3.0.3
 flask-healthz==1.0.1
 kubernetes==29.0.0
 gunicorn==21.2.0
