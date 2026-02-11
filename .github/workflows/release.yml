@@ -34,6 +34,8 @@ jobs:
           tags: smitkirara/kubelinks:${{github.ref_name}}
 
   release:
+    permissions:
+      contents: write
     needs: docker
     runs-on: ubuntu-latest
     steps:
